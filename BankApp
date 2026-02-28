@@ -22,10 +22,9 @@ class AccountInactiveException extends Exception {
     }
 }
 
-// Step 2: Implement the BankManager class
 
 class BankManager {
-    private double balance = 10000.0; // Sample balance
+    private double balance = 10000.0;
     private boolean isAccountActive = true;
 
     // Method to validate withdrawal amount
@@ -38,7 +37,6 @@ class BankManager {
         }
     }
 
-    // Method to perform withdrawal, which can throw multiple exceptions
     public void withdraw(double amount) throws AmountLessOrEqualToZeroException, AmountExceedsLimitException, InsufficientFundsException, AccountInactiveException {
         validateWithdrawal(amount); // Propagate exceptions from here
 
@@ -55,20 +53,17 @@ class BankManager {
     }
 }
 
-// Step 3: Implement the main class
 
 public class Main {
     public static void main(String[] args) {
         BankManager manager = new BankManager();
-        double withdrawalAmount = 800000.0; // Example amount to trigger an exception
+        double withdrawalAmount = 800000.0; 
 
         try {
             manager.withdraw(withdrawalAmount);
         } catch (AmountLessOrEqualToZeroException | AmountExceedsLimitException | InsufficientFundsException | AccountInactiveException e) {
-            // Multi-catch block to handle all custom exceptions
             System.err.println("Transaction failed: " + e.getMessage());
         } finally {
-            // Finally block to display a completion message
             System.out.println("Transaction attempt completed.");
         }
     }
